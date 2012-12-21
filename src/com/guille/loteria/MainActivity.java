@@ -10,6 +10,8 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONObject;
 
+import com.guille.loteria.db.LoteriaDbHelper;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
@@ -41,7 +43,16 @@ public class MainActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        
+        listaNumeros = getNumerosDB();
+        rellenarTabla();
     }
+	
+	private void rellenarTabla(){
+		for(String elem : listaNumeros){
+			addFilaTabla(elem);
+		}
+	}
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -58,6 +69,23 @@ public class MainActivity extends Activity {
     }
     
     public void addNumber(View v){
+    	
+    	
+    	EditText status = (EditText)findViewById(R.id.numeroLoteria);
+    	if(status.getText().length() > 0){
+    	listaNumeros.add(status.getText().toString());
+    	
+    	
+    	addFilaTabla(status.getText().toString());
+		
+		guardarNumero(status.getText().toString());
+		
+		status.setText("");
+    	}
+		
+    }
+    
+    private void addFilaTabla(String num){
     	final TableLayout tablaResultados = (TableLayout)findViewById(R.id.tablaPremios);
     	View.OnClickListener eliminarListener = new View.OnClickListener() {
 	        public void onClick(View v) {
@@ -71,36 +99,43 @@ public class MainActivity extends Activity {
 	        		}
 	        	}
 	        	
+	        	LoteriaDbHelper dbHelper = new LoteriaDbHelper(getApplicationContext());
+	        	dbHelper.deleteNumero(String.valueOf(b.getId()));
+	        	
 	        }
 	      };
-    	
-    	EditText status = (EditText)findViewById(R.id.numeroLoteria);
-    	if(status.getText().length() > 0){
-    	listaNumeros.add(status.getText().toString());
-    	
     	
     	TableRow fila = new TableRow(getApplicationContext());
 		fila.setLayoutParams(new LayoutParams(
                 LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
 		TextView textoFila = new TextView(getBaseContext());
 		textoFila.setTextSize(20.0f);
-		textoFila.setText(status.getText().toString());
+		textoFila.setText(num);
 		
 		Button botonEliminar = new Button(getBaseContext());
 		botonEliminar.setOnClickListener(eliminarListener);
-		botonEliminar.setId(Integer.parseInt(status.getText().toString()));
+		botonEliminar.setId(Integer.parseInt(num));
 		botonEliminar.setText("Borrar");
 		botonEliminar.setGravity(Gravity.LEFT);
 		botonEliminar.setBackgroundColor(Color.GRAY);
-		fila.setId(Integer.parseInt(status.getText().toString()));
+		fila.setId(Integer.parseInt(num));
 		
 		fila.addView(botonEliminar);
 		fila.addView(textoFila);
 		fila.setBackgroundColor(0xFF3d46ff);
 		tablaResultados.addView(fila);
-		status.setText("");
-    	}
-		
+    }
+    
+    private void guardarNumero(String num){
+    	LoteriaDbHelper dbHelper = new LoteriaDbHelper(getApplicationContext());
+		dbHelper.addNumero(num);
+    }
+    
+    private ArrayList<String> getNumerosDB(){
+    	LoteriaDbHelper dbHelper = new LoteriaDbHelper(getApplicationContext());
+    	ArrayList<String> listaNums = new ArrayList<String>();
+		dbHelper.findNumeros(listaNums);
+		return listaNums;
     }
     
     
@@ -150,6 +185,9 @@ public class MainActivity extends Activity {
     	        			listaNumeros.remove(t);
     	        		}
     	        	}
+    	        	
+    	        	LoteriaDbHelper dbHelper = new LoteriaDbHelper(getApplicationContext());
+    	        	dbHelper.deleteNumero(String.valueOf(b.getId()));
     	        	
 //    	        	lista.setText(listaNumeros.toString());
     	        }
