@@ -109,6 +109,7 @@ public class MainActivity extends Activity {
 		fila.setLayoutParams(new LayoutParams(
                 LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
 		TextView textoFila = new TextView(getBaseContext());
+		textoFila.setPadding(10, 1, 5, 1);
 		textoFila.setTextSize(20.0f);
 		textoFila.setText(num);
 		
@@ -173,7 +174,6 @@ public class MainActivity extends Activity {
             super.onPostExecute(result);
             
             final TableLayout tablaResultados = (TableLayout)findViewById(R.id.tablaPremios);
-//        	final TextView lista = (TextView)findViewById(R.id.listaNumeros);
         	View.OnClickListener eliminarListener = new View.OnClickListener() {
     	        public void onClick(View v) {
     	        	Button b = ((Button)v);
@@ -189,7 +189,6 @@ public class MainActivity extends Activity {
     	        	LoteriaDbHelper dbHelper = new LoteriaDbHelper(getApplicationContext());
     	        	dbHelper.deleteNumero(String.valueOf(b.getId()));
     	        	
-//    	        	lista.setText(listaNumeros.toString());
     	        }
     	      };
             
@@ -218,7 +217,6 @@ public class MainActivity extends Activity {
     		fila.setBackgroundColor(0xFF3d46ff);
     		tablaResultados.addView(fila);
     		
-   	     	//estado.setText(estado.getText() + datos.toString());
         }
     }
     
