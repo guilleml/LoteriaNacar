@@ -65,7 +65,7 @@ public class MainActivity extends Activity {
 	        	TableRow row = (TableRow)findViewById(b.getId());
 	        	tablaResultados.removeView(row);
 	        	
-	        	for(int t=0;t<=listaNumeros.size();t++){
+	        	for(int t=0;t<listaNumeros.size();t++){
 	        		if(listaNumeros.get(t).equals(String.valueOf(b.getId()))){
 	        			listaNumeros.remove(t);
 	        		}
@@ -145,7 +145,7 @@ public class MainActivity extends Activity {
     	        	TableRow row = (TableRow)findViewById(b.getId());
     	        	tablaResultados.removeView(row);
     	        	
-    	        	for(int t=0;t<=listaNumeros.size();t++){
+    	        	for(int t=0;t<listaNumeros.size();t++){
     	        		if(listaNumeros.get(t).equals(String.valueOf(b.getId()))){
     	        			listaNumeros.remove(t);
     	        		}
