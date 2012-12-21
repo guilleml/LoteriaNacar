@@ -1,0 +1,14 @@
+<resources>
+
+    <string name="app_name">LotoNacar</string>
+    <string name="menu_settings">Acerca de</string>
+    <string name="title_activity_main">Lotería Navidad</string>
+    <string name="actualizar">Consultar</string>
+    <string name="anadir">Añadir</string>
+    <string name="hintBoleto">Número de tu boleto</string>
+    <string name="listaPremios">Lista de premios</string>
+    <string name="aboutTitle">Lotería Nacarena</string>
+    <string name="about">Esta aplicación utiliza el API de elpais.com para consultar los números de la lotería. Introduce la lista de números que juegas y podrás ver la cantidad premiada a cada uno.</string>
+    <string name="aboutAuthor">Guillermo Martínez Labajo - guilleml@gmail.com</string>
+
+</resources>

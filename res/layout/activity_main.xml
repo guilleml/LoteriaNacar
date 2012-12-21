@@ -1,0 +1,54 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <Button
+        android:id="@+id/botonActualizar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:onClick="actualizar"
+        android:text="@string/actualizar" />
+
+    <Button
+        android:id="@+id/botonAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:onClick="addNumber"
+        android:text="@string/anadir" />
+
+    <EditText
+        android:id="@+id/numeroLoteria"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/botonAdd"
+        android:layout_toLeftOf="@+id/botonActualizar"
+        android:ems="10"
+        android:inputType="number"
+        android:hint="@string/hintBoleto" >
+    </EditText>
+
+    <TableLayout
+        android:id="@+id/tablaPremios"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#ff0000"
+        android:layout_below="@+id/tituloTablaResultados"
+        android:stretchColumns="1,2,1"
+         >
+    </TableLayout>
+
+    <TextView
+        android:id="@+id/tituloTablaResultados"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/numeroLoteria"
+        android:layout_marginTop="32dp"
+        android:text="@string/listaPremios"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+</RelativeLayout>
