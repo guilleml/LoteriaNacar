@@ -3,14 +3,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <Button
-        android:id="@+id/botonActualizar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:onClick="actualizar"
-        android:text="@string/actualizar" />
+         	
+        <ScrollView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/scrollPremios"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="50dp"
+            android:layout_below="@+id/tituloTablaResultados"
+            android:scrollbars="vertical" >
+    
+    		<TableLayout
+        		android:id="@+id/tablaPremios"
+        		android:layout_width="wrap_content"
+        		android:layout_height="wrap_content"
+        		android:background="#c7c4c4"
+        		android:stretchColumns="1,2,1"
+         	>
+    		</TableLayout>
+    
+    	</ScrollView>
+    	
+        <Button
+	        android:id="@+id/botonActualizar"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentBottom="true"
+	        android:layout_alignParentRight="true"
+	        android:onClick="actualizar"
+	        android:layout_below="@+id/tablaPremios"
+	        android:text="@string/actualizar" />
+    
 
     <Button
         android:id="@+id/botonAdd"
@@ -31,23 +54,6 @@
         android:inputType="number"
         android:hint="@string/hintBoleto" >
     </EditText>
-
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent" android:layout_height="fill_parent"
-    android:layout_below="@+id/tituloTablaResultados"
-    android:scrollbars="vertical">
-    
-    
-    <TableLayout
-        android:id="@+id/tablaPremios"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#c7c4c4"
-        android:stretchColumns="1,2,1"
-         >
-    </TableLayout>
-    
-    </ScrollView>
 
     <TextView
         android:id="@+id/tituloTablaResultados"
